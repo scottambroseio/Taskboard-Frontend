@@ -1,0 +1,21 @@
+.List {
+    flex-grow: 0;
+    display: inline-block;
+    border: 1px solid white;
+    margin: 20px;
+    padding: 20px;
+    min-width: 200px;
+    vertical-align: top;
+}
+
+.List h4 {
+    margin: 0;
+}
+
+.List h5 {
+    margin: 0;
+}
+
+.TaskList {
+    margin: 15px 0;
+}

@@ -1,0 +1,5 @@
+export const RECEIVED_LISTS = 'RECEIVED_LISTS';
+export const CREATED_LIST = 'CREATED_LIST';
+export const DELETED_LIST = 'DELETED_LIST';
+export const CREATED_TASK = 'CREATED_TASK';
+export const DELETED_TASK = 'DELETED_TASK';
