@@ -1,6 +1,6 @@
 import lists from './lists'
 import {
-    RECEIVED_LISTS, CREATED_LIST, DELETED_LIST, DELETED_TASK, CREATED_TASK
+    RECEIVED_LISTS, CREATED_LIST, DELETED_LIST, DELETED_TASK, CREATED_TASK, LIST_NAME_TO_CREATE_UPDATED
 } from '../constants/actionTypes'
 
 it('should handle RECEIVED_LISTS correctly', () => {
@@ -129,5 +129,22 @@ it('should handle DELETED_TASK correctly', () => {
             name: "name",
             tasks: []
         }]
+    })
+});
+
+it('should handle LIST_NAME_TO_CREATE_UPDATED correctly', () => {
+    const state = {
+        items: [],
+        listNameToCreate: ''
+    };
+
+    const action = {
+        type: LIST_NAME_TO_CREATE_UPDATED,
+        value: "name"
+    }
+
+    expect(lists(state, action)).toMatchObject({
+        items: [],
+        listNameToCreate: "name"
     })
 });

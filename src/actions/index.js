@@ -39,6 +39,13 @@ export function deletedTask(listId, taskId) {
     }
 }
 
+export function updateListNameToCreate(value) {
+    return {
+        type: types.LIST_NAME_TO_CREATE_UPDATED,
+        value: value
+    }
+}
+
 export function fetchLists() {
     return async function (dispatch) {
         const lists = await client.getLists();

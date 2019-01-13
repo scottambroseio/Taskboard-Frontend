@@ -1,9 +1,10 @@
 import {
-    RECEIVED_LISTS, CREATED_LIST, DELETED_LIST, DELETED_TASK, CREATED_TASK
+    RECEIVED_LISTS, CREATED_LIST, DELETED_LIST, DELETED_TASK, CREATED_TASK, LIST_NAME_TO_CREATE_UPDATED
 } from '../constants/actionTypes'
 
 const initialState = {
-    items: []
+    items: [],
+    listNameToCreate: ''
 };
 
 export default function lists(state = initialState, action) {
@@ -16,7 +17,8 @@ export default function lists(state = initialState, action) {
         };
         case CREATED_LIST: return {
             ...state,
-            items: [...state.items, action.list]
+            items: [...state.items, action.list],
+            listNameToCreate: ''
         };
         case DELETED_LIST: return {
             ...state,
@@ -43,6 +45,11 @@ export default function lists(state = initialState, action) {
                 ...state,
                 items
             };
+        case LIST_NAME_TO_CREATE_UPDATED:
+            return {
+                ...state,
+                listNameToCreate: action.value
+            }
         default: return state
     }
 }

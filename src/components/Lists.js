@@ -2,12 +2,13 @@ import React from 'react'
 
 import { connect } from 'react-redux';
 
-import { fetchLists, createList, deleteList, createTask, deleteTask } from '../actions';
+import { fetchLists, createList, deleteList, createTask, deleteTask, updateListNameToCreate } from '../actions';
 import List from '../components/List';
 
 const mapStateToProps = state => {
     return ({
-        lists: state.lists.items
+        lists: state.lists.items,
+        listNameToCreate: state.lists.listNameToCreate
     })
 }
 
@@ -16,15 +17,16 @@ const mapDispatchToProps = dispatch => ({
     createList: (list) => dispatch(createList(list)),
     deleteList: (id) => dispatch(deleteList(id)),
     createTask: (listId, task) => dispatch(createTask(listId, task)),
-    deleteTask: (listId, taskId) => dispatch(deleteTask(listId, taskId))
+    deleteTask: (listId, taskId) => dispatch(deleteTask(listId, taskId)),
+    updateListNameToCreate: (name) => dispatch(updateListNameToCreate(name))
 });
 
 class Lists extends React.Component {
     constructor(props) {
         super(props);
 
-        this.input = React.createRef();
         this.createList = this.createList.bind(this);
+        this.updateListNameToCreate = this.updateListNameToCreate.bind(this);
     }
     componentDidMount() {
         this.props.fetchLists()
@@ -39,18 +41,24 @@ class Lists extends React.Component {
                 </div>
                 <p>Or create a new list</p>
                 <form>
-                    <input type="text" placeholder="Name" ref={this.input} />
+                    <input type="text" placeholder="Name" value={this.props.listNameToCreate} onChange={this.updateListNameToCreate} />
                     <input type="submit" onClick={this.createList} />
                 </form>
             </div>
         );
     }
 
+    updateListNameToCreate(e) {
+        e.preventDefault();
+
+        this.props.updateListNameToCreate(e.target.value);
+    }
+
     createList(e) {
         e.preventDefault();
 
         this.props.createList({
-            "name": this.input.current.value
+            name: this.props.listNameToCreate
         });
     }
 };
