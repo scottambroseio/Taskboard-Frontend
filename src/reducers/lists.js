@@ -23,8 +23,8 @@ export default function lists(state = initialState, action) {
             items: [...state.items.filter(list => list.id !== action.id)]
         };
         case CREATED_TASK:
-        items = [...state.items];
-        list = items.find(l => l.id === action.listId);
+            items = [...state.items];
+            list = items.find(l => l.id === action.listId);
 
             list.tasks.push(action.task);
 
